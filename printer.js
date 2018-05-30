@@ -8,7 +8,7 @@
 	var Printer = {};
 	Printer.printer = {"version": "0.0.1"};
 	var init_options = {
-		"speed" : 50,		//文字的速度
+		"speed" : 60,		//文字的速度
 		"selector" : 'canvas',		//要打印到的标签的ID			
 		"startIndex" : 0,		//从第几个字符开始打印
 		"endIndex" : 0,		//打印到第几个字符结束

@@ -25,6 +25,7 @@
         justify-content: center;
       }
       #main-view {
+        display: none;
         width: 28em;
         height: 18em;
         border: 1px solid white;
@@ -62,7 +63,7 @@
     <!-- 首页载入主体div -->
     <div id="container">
       <!-- 载入模块 -->
-      <div id="main-view" class="slideInUp animated">
+      <div id="main-view" class="fadeIn animated">
         <!-- 标题样式 -->
         <div class="main-view-top">
           <div class="main-view-top-icon">
@@ -75,21 +76,37 @@
         <div id="main-view-info"></div>
       </div>
       <!-- 操作模块 -->
-      <div id="operate-view"></div>
+      <div id="operate-view">
+        
+      </div>
     </div>
   </body>
   <script>
-    var str = 'Simplicity, is hidden complexity\n';
-        str += 'The essence of flat, is super curved.\n';
-        str += 'Uncomfortable, is the new comfortable.\n';
-        str += 'Right is right. Left is also right.\n';
-        str += 'No detail, can be too detailed.\n';
-        // str += '              -- Steve Jobs.\n';
+    // 定义打字显示文字
+    var str = 'Simplicity,is hidden complexity.\n';
+        str += 'The essence of flat,is super curved.\n';
+        str += 'Uncomfortable,is the new comfortable.\n';
+        str += 'Right is right,Left is also right.\n';
+        str += 'No detail,can be too detailed.\n';
+        // str += '              -- 罗永浩.\n';
         str += '\n';
-        str += 'Please press \'Enter\' continue...\n';
-    Printer.init(str, {
+        str += 'Please press any key to continue...\n';
+    // 设置在加载动画完成后开始打字效果
+    setTimeout(function(){
+      Printer.init(str, {
         selector: 'main-view-info',
         // lnStr: 'tinglo: '
-    }).print();
+      }).print();
+    },600);
+    // 设置在页面加载5秒后绑定键盘事件以退出该模式
+    setTimeout(function(){
+      $('body').keydown(function(){
+        $("#main-view").removeClass().addClass('fadeOut animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          // 设置动画完成后操作
+          $(this).removeClass();
+          $(this).css('display','none');
+        });
+      });
+    },5000);
   </script>
 </html>
