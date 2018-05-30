@@ -7,7 +7,7 @@
     <script src="./printer.js"></script>
     <link href="./font-awesome/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="./animate.css">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Montserrat|Pacifico|Space+Mono|VT323" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css?family=Exo+2|Indie+Flower|Montserrat|Pacifico|Space+Mono|VT323" rel="stylesheet">  
     <style>
       * {
         margin: 0;
@@ -57,6 +57,83 @@
         margin-left: 1em;
         /* border: 1px solid white; */
       }
+
+      /* 操作区域样式 */
+      #operate-menu-view {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3.5em;
+        border-bottom: .5px solid white;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-family: 'Exo 2', sans-serif;
+      }
+      #operate-menu-about {
+        position: inherit;
+        top: 1.2em;
+        right: 1.5em;
+      }
+      .operate-menu-item {
+        cursor: pointer;
+        position: relative;
+      }
+      .operate-menu-item:after {
+        content: "";
+        width: 0;
+        height: 1.5px;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-top: 3px;
+        transition: all .3s;
+      }
+      .operate-menu-item:hover:after {
+        left: 0%;
+        width: 100%;
+      }
+      #operate-search {
+        position: inherit;
+        top: 1em;
+        left: 40%;
+        width: 20%;
+      }
+      #operate-search:after {
+        content: "";
+        width: 0;
+        height: 1px;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 0%;
+        transition: all .5s;
+      }
+      #operate-search:hover:after {
+        /* left: 0%; */
+        width: 100%;
+      }
+      #operate-search-input {
+        width: 100%;
+        height: 2.5em;
+        cursor: text;
+        border: 0;
+        background-color: black;
+        outline: none;
+        color: white;
+        font-family: 'Exo 2', sans-serif;
+        /* font-size: 1.2em; */
+      }
+      #operate-search-input::placeholder {
+        font-family: 'Exo 2', sans-serif;
+        font-size: 1.2em;
+        color: #666666;
+      }
+      #operate-search-input:focus > #operate-search {
+        margin-left: 2em;
+      }
     </style>
   </head>
   <body>
@@ -77,7 +154,16 @@
       </div>
       <!-- 操作模块 -->
       <div id="operate-view">
-        
+        <div id="operate-menu-view">
+          <span style="margin-left: 1.5em" class="operate-menu-item">TINGLO</span>
+          <b>&nbsp;|&nbsp;</b>
+          <span class="operate-menu-item">MENU</span>
+          <div id="operate-search">
+              <input type="text" id="operate-search-input" placeholder="SEARCH"/>
+          </div>
+          <span id="operate-menu-about" class="operate-menu-item">ABOUT</span>
+        </div>
+        <div id="operate-main-view"></div>
       </div>
     </div>
   </body>
@@ -108,5 +194,8 @@
         });
       });
     },5000);
+    $("#operate-search-input").focus(function() {
+      $("#operate-search-input:after").css('width','100%');
+    })
   </script>
 </html>
