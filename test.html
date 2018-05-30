@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>打字机效果</title>
+<script src="./jquery-3.2.1.min.js"></script>
+<style>
+    .box:before{
+      content: '';
+      position: absolute;
+      width:px;height: px;border:px red solid;
+      left:-px;top:-px;
+      /* z-index: ; */
+    }
+    @-webkit-keyframes clipMe{
+      %{ clip: rect(px, px, px, px); }
+      %{ clip: rect(px, px, px, px); }
+      %{ clip: rect(px, px, px, px); }
+      %{ clip: rect(px, px, px, px); }
+      %{ clip: rect(px, px, px, px); }
+    }
+    .box:after{
+      -webkit-animation:clipMe s linear infinite;
+    }
+</style>
+<script>
+  var t = setInterval(function(){
+    str = con.substr(, strlen) + "_";
+    me.obj.html(str);
+    //内容打印完毕
+    if(strlen == con.length){
+    clearInterval(t);
+    }
+    strlen = strlen + ;
+  }, me.speed);
+  $(function(){
+    function Type(obj, speed, welcome){
+    this.obj = obj;
+    this.speed = speed;
+    this.welcome = welcome;
+    }
+    Type.prototype = {
+    init : function(){
+    var str = this.obj.html();
+    this.obj.html(this.welcome);
+    this.add(str);
+    },
+    add : function(con){
+    var me = this;
+    var str;
+    var strlen = ;
+    var t = setInterval(function(){
+    str = con.substr(, strlen) + "_";
+    me.obj.html(str);
+    //内容打印完毕
+    if(strlen == con.length){
+    clearInterval(t);
+    }
+    strlen = strlen + ;
+    }, me.speed);
+    }
+    }
+    var a = new Type($('.box'), , '正在初始化...');
+    a.init();
+  });
+</script>
+</head>
+<body>
+    <div class="box">
+        <span>/**仅共娱乐,然并卵**/</span>
+        <p>Login : Jmingzi</p>
+        <p>password : ******</p>
+        <p>Access is granted</p>
+        <span>Welcome ymblog.net !</span>
+    </div>
+</body>
+</html>
